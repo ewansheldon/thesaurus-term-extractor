@@ -15,27 +15,23 @@ import static org.mockito.Mockito.when;
 
 public class ThesaurusTest {
     private Thesaurus thesaurus;
-    private KeyNormaliser normaliser;
-    private final ThesaurusTerm geografischenamenTerm = new ThesaurusTerm("Hilversum", "geografischenamen");
-    private String geografischenamenKey = "hilversum";
-    private final ThesaurusTerm namenTerm = new ThesaurusTerm("Simplisties Verbond", "namen");
-    private String namenKey = "simplisties verbond";
-    private final ThesaurusTerm persoonsnamenTerm = new ThesaurusTerm("Kooten, Kees van", "persoonsnamen");
-    private String persoonsnamenKey = "kees van kooten";
+    private KeyNormaliser normaliserMock;
+    private final ThesaurusTerm geographicalNameTerm = new ThesaurusTerm("Hilversum", "geografischenamen");
+    private String geographicalNameKey = "hilversum";
+    private final ThesaurusTerm nameTerm = new ThesaurusTerm("Simplisties Verbond", "namen");
+    private String nameKey = "simplisties verbond";
+    private final ThesaurusTerm personalNameTerm = new ThesaurusTerm("Kooten, Kees van", "persoonsnamen");
+    private String personalNameKey = "kees van kooten";
 
     @BeforeEach
     void setUp() {
-        KeyNormaliser normaliserMock = mockNormalisedKeys();
-        List<ThesaurusTerm> terms = List.of(geografischenamenTerm, namenTerm, persoonsnamenTerm);
-        thesaurus = new Thesaurus(terms, normaliserMock);
-    }
+        normaliserMock = mock(KeyNormaliser.class);
+        when(normaliserMock.normaliseByType(geographicalNameTerm)).thenReturn(geographicalNameKey);
+        when(normaliserMock.normaliseByType(nameTerm)).thenReturn(nameKey);
+        when(normaliserMock.normaliseByType(personalNameTerm)).thenReturn(personalNameKey);
 
-    private KeyNormaliser mockNormalisedKeys() {
-        normaliser = mock(KeyNormaliser.class);
-        when(normaliser.normalise(geografischenamenTerm.term())).thenReturn(geografischenamenKey);
-        when(normaliser.normalise(namenTerm.term())).thenReturn(namenKey);
-        when(normaliser.normalise(persoonsnamenTerm.term())).thenReturn(persoonsnamenKey);
-        return normaliser;
+        List<ThesaurusTerm> terms = List.of(geographicalNameTerm, nameTerm, personalNameTerm);
+        thesaurus = new Thesaurus(terms, normaliserMock);
     }
 
     @Test
@@ -45,8 +41,12 @@ public class ThesaurusTest {
 
     @Test
     void getsTermsUsingNormalisedKeys() {
-        String lookupKey = "Hilversum.";
-        when(normaliser.normalise(lookupKey)).thenReturn(geografischenamenKey);
-        assertEquals(Optional.of(geografischenamenTerm), thesaurus.lookup(lookupKey));
+        String geographicalLookupKey = "Hilversum.";
+        when(normaliserMock.normalise(geographicalLookupKey)).thenReturn(geographicalNameKey);
+        assertEquals(Optional.of(geographicalNameTerm), thesaurus.lookup(geographicalLookupKey));
+
+        String personalLookupKey = "(Kees van Kooten ";
+        when(normaliserMock.normalise(personalLookupKey)).thenReturn(personalNameKey);
+        assertEquals(Optional.of(personalNameTerm), thesaurus.lookup(personalLookupKey));
     }
 }

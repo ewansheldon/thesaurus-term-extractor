@@ -1,18 +1,18 @@
 package thesaurus;
 
-import nl.beeldengeluid.thesaurus.GeneralNameKeyNormaliser;
-import nl.beeldengeluid.thesaurus.PersonNameKeyNormaliser;
+import nl.beeldengeluid.model.ThesaurusTerm;
+import nl.beeldengeluid.thesaurus.KeyNormaliser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class GeneralNameKeyNormaliserTest {
-    private GeneralNameKeyNormaliser normaliser;
+public class KeyNormaliserTest {
+    private KeyNormaliser normaliser;
 
     @BeforeEach
     void setUp() {
-        normaliser = new GeneralNameKeyNormaliser();
+        normaliser = new KeyNormaliser();
     }
 
     @Test
@@ -21,15 +21,17 @@ public class GeneralNameKeyNormaliserTest {
     }
 
     @Test
-    void removesContextParentheses() {
+    void removesAllPunctuation() {
         assertEquals("hasselt belgië", normaliser.normalise("Hasselt (België)"));
-    }
-
-    @Test
-    void ignoresAllPunctuationExceptHyphens() {
         assertEquals("hasselt belgië", normaliser.normalise("Hasselt, België"));
         assertEquals("hilversum", normaliser.normalise("Hilversum."));
         assertEquals("hilversum", normaliser.normalise("(Hilversum, "));
         assertEquals("montigny les cormeilles", normaliser.normalise("(Montigny-les-Cormeilles, "));
+    }
+
+    @Test
+    void removesPersonalContext() {
+        ThesaurusTerm term = new ThesaurusTerm("Vries, Dolf de (jazzmusicus)", "persoonsnamen");
+        assertEquals("dolf de vries", normaliser.normaliseByType(term));
     }
 }
