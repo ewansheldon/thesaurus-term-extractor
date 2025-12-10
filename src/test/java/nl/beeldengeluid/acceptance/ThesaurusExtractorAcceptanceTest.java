@@ -18,7 +18,7 @@ public class ThesaurusExtractorAcceptanceTest {
         FileLoader fileLoader = new FileLoader();
         ThesaurusCsvLoader csvLoader = new ThesaurusCsvLoader();
 
-        List<String> csvLines = fileLoader.loadLines(Path.of("src/test/resources/thesaurus.csv"));
+        List<String> csvLines = fileLoader.loadLines(Path.of("src/test/resources/gtaa-terms.csv"));
         List<ThesaurusTerm> terms = csvLoader.loadFromCsv(csvLines);
 
         Thesaurus thesaurus = new Thesaurus(terms);
