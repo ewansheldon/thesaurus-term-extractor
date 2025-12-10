@@ -41,7 +41,7 @@ public class FileLoaderTest {
     }
 
     @Test
-    void throwsErrorIfInvalidFileCsvPath() {
+    void throwsExceptionIfInvalidFileCsvPath() {
         Path path = Path.of("src/test/resources/incorrect-file-path.csv");
         assertThrows(FileLoadingException.class, () -> loader.loadLines(path));
     }
