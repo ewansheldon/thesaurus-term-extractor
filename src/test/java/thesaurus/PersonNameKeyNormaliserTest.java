@@ -26,7 +26,6 @@ public class PersonNameKeyNormaliserTest {
 
     @Test
     void removesPersonContext() {
-        System.out.println(normaliser.normalise("Vries, Dolf de (jazzmusicus)"));
         assertEquals("dolf de vries", normaliser.normalise("Vries, Dolf de (jazzmusicus)"));
     }
 
@@ -34,6 +33,6 @@ public class PersonNameKeyNormaliserTest {
     void ignoresLeadingAndTrailingPunctuation() {
         assertEquals("kees van kooten", normaliser.normalise("Kees van Kooten)"));
         assertEquals("kees van kooten", normaliser.normalise("(Kees van Kooten"));
-        assertEquals("kees van kooten", normaliser.normalise("(Kees van Kooten,"));
+        assertEquals("kees van kooten", normaliser.normalise("(Kees van Kooten, "));
     }
 }

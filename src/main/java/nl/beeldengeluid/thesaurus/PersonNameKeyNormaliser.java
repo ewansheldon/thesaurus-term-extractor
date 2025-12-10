@@ -13,10 +13,6 @@ public class PersonNameKeyNormaliser extends KeyNormaliser {
         );
     }
 
-    private String normaliseWhitespace(String key) {
-        return key.replaceAll("\\s+", " ").trim();
-    }
-
     private String removeLeadingAndTrailingPunctuation(String key) {
         return key.replaceAll("^[\\p{Punct}\\s]+", "")
                 .replaceAll("[\\p{Punct}\\s]+$", "");
