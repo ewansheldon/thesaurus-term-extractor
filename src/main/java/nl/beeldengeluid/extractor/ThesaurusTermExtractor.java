@@ -19,7 +19,7 @@ public class ThesaurusTermExtractor {
         int maxTermWordCount = thesaurus.getMaxTermWordCount();
         List<String> textWindows = textWindowExtractor.extractWordWindows(document, maxTermWordCount);
         return textWindows.stream()
-                .map(thesaurus::getTerm)
+                .map(thesaurus::lookup)
                 .flatMap(Optional::stream)
                 .toList();
     }

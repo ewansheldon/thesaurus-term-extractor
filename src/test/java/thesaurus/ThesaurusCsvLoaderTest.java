@@ -3,7 +3,6 @@ package thesaurus;
 import nl.beeldengeluid.model.ThesaurusTerm;
 import nl.beeldengeluid.thesaurus.TermLoadingException;
 import nl.beeldengeluid.thesaurus.ThesaurusCsvLoader;
-import nl.beeldengeluid.util.FileLoadingException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

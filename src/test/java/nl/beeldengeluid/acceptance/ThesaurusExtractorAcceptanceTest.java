@@ -3,6 +3,7 @@ package nl.beeldengeluid.acceptance;
 import nl.beeldengeluid.extractor.TextWindowExtractor;
 import nl.beeldengeluid.extractor.ThesaurusTermExtractor;
 import nl.beeldengeluid.model.ThesaurusTerm;
+import nl.beeldengeluid.thesaurus.PersonNameKeyNormaliser;
 import nl.beeldengeluid.thesaurus.Thesaurus;
 import nl.beeldengeluid.thesaurus.ThesaurusCsvLoader;
 import nl.beeldengeluid.util.FileLoader;
@@ -22,7 +23,8 @@ public class ThesaurusExtractorAcceptanceTest {
         List<String> csvLines = fileLoader.loadLines(Path.of("src/test/resources/gtaa-terms.csv"));
         List<ThesaurusTerm> terms = csvLoader.loadFromCsv(csvLines);
 
-        Thesaurus thesaurus = new Thesaurus(terms);
+        PersonNameKeyNormaliser personNameKeyNormaliser = new PersonNameKeyNormaliser();
+        Thesaurus thesaurus = new Thesaurus(terms, personNameKeyNormaliser);
         TextWindowExtractor textWindowExtractor = new TextWindowExtractor();
         ThesaurusTermExtractor extractor = new ThesaurusTermExtractor(thesaurus, textWindowExtractor);
 

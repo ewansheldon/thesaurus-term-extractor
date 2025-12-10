@@ -35,7 +35,7 @@ public class ThesaurusTermExtractorTest {
         when(textWindowExtractor.extractWordWindows(document, maxTermWordCount)).thenReturn(List.of(
                 "in", "de", "periode", "Simplisties", "Verbond", "Simplisties Verbond"
         ));
-        when(thesaurus.getTerm("Simplisties Verbond")).thenReturn(Optional.of(expectedTerm));
+        when(thesaurus.lookup("Simplisties Verbond")).thenReturn(Optional.of(expectedTerm));
 
         List<ThesaurusTerm> terms = thesaurusTermExtractor.extract(document);
         assertEquals(List.of(expectedTerm), terms);
