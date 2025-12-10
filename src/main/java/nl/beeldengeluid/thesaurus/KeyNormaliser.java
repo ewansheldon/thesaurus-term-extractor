@@ -6,4 +6,8 @@ abstract public class KeyNormaliser {
     protected String normaliseWhitespace(String key) {
         return key.replaceAll("\\s+", " ").trim();
     }
+
+    protected String removeAllPunctuation(String key) {
+        return key.replaceAll("[^\\p{L}\\p{M}\\s]", " ");
+    }
 }

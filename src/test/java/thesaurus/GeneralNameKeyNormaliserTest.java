@@ -30,6 +30,6 @@ public class GeneralNameKeyNormaliserTest {
         assertEquals("hasselt belgië", normaliser.normalise("Hasselt, België"));
         assertEquals("hilversum", normaliser.normalise("Hilversum."));
         assertEquals("hilversum", normaliser.normalise("(Hilversum, "));
-        assertEquals("montigny-les-cormeilles", normaliser.normalise("(Montigny-les-Cormeilles, "));
+        assertEquals("montigny les cormeilles", normaliser.normalise("(Montigny-les-Cormeilles, "));
     }
 }

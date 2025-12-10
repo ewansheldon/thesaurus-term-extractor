@@ -5,17 +5,12 @@ public class PersonNameKeyNormaliser extends KeyNormaliser {
     @Override
     public String normalise(String key) {
         return normaliseWhitespace(
-                removeLeadingAndTrailingPunctuation(
+                removeAllPunctuation(
                         reorderAroundComma(
                                 removePersonContext(key.toLowerCase())
                         )
                 )
         );
-    }
-
-    private String removeLeadingAndTrailingPunctuation(String key) {
-        return key.replaceAll("^[\\p{Punct}\\s]+", "")
-                .replaceAll("[\\p{Punct}\\s]+$", "");
     }
 
     private String reorderAroundComma(String key) {

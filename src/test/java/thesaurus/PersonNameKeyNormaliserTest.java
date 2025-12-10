@@ -30,9 +30,13 @@ public class PersonNameKeyNormaliserTest {
     }
 
     @Test
-    void ignoresLeadingAndTrailingPunctuation() {
+    void removesAllPunctuation() {
         assertEquals("kees van kooten", normaliser.normalise("Kees van Kooten)"));
         assertEquals("kees van kooten", normaliser.normalise("(Kees van Kooten"));
         assertEquals("kees van kooten", normaliser.normalise("(Kees van Kooten, "));
+        assertEquals("kees van kooten", normaliser.normalise("(Kees van Kooten, "));
+        assertEquals("gilbert o sullivan", normaliser.normalise("O'Sullivan, Gilbert"));
+        assertEquals("j j modder", normaliser.normalise("Modder, J.J."));
+        assertEquals("lin hi hsin", normaliser.normalise("Lin Hi-Hsin"));
     }
 }
