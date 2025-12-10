@@ -1,5 +1,6 @@
 package nl.beeldengeluid.acceptance;
 
+import nl.beeldengeluid.extractor.TextWindowExtractor;
 import nl.beeldengeluid.extractor.ThesaurusTermExtractor;
 import nl.beeldengeluid.model.ThesaurusTerm;
 import nl.beeldengeluid.thesaurus.Thesaurus;
@@ -22,7 +23,8 @@ public class ThesaurusExtractorAcceptanceTest {
         List<ThesaurusTerm> terms = csvLoader.loadFromCsv(csvLines);
 
         Thesaurus thesaurus = new Thesaurus(terms);
-        ThesaurusTermExtractor extractor = new ThesaurusTermExtractor(thesaurus);
+        TextWindowExtractor textWindowExtractor = new TextWindowExtractor();
+        ThesaurusTermExtractor extractor = new ThesaurusTermExtractor(thesaurus, textWindowExtractor);
 
         String document = fileLoader.loadText(Path.of("src/test/resources/sampledoc.txt"));
         List<ThesaurusTerm> results = extractor.extract(document);
