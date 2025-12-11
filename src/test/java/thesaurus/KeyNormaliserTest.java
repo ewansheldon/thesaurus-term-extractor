@@ -30,7 +30,12 @@ public class KeyNormaliserTest {
     }
 
     @Test
-    void removesPersonalContext() {
+    void doesNotRemoveNumbers() {
+        assertEquals("jaren 80", normaliser.normalise("jaren 80"));
+    }
+
+    @Test
+    void removesPersonalContextForPersonalNames() {
         ThesaurusTerm term = new ThesaurusTerm("Vries, Dolf de (jazzmusicus)", "persoonsnamen");
         assertEquals("dolf de vries", normaliser.normaliseByType(term));
     }

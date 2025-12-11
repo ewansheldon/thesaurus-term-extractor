@@ -14,7 +14,7 @@ public class KeyNormaliser {
     }
 
     private String removeAllPunctuation(String key) {
-        return key.replaceAll("[^\\p{L}\\p{M}\\s]", " ");
+        return key.replaceAll("[^\\p{L}\\p{M}\\p{Nd}\\s]", " ");
     }
 
     public String normaliseByType(ThesaurusTerm term) {
