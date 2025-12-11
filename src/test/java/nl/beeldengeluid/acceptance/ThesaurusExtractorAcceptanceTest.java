@@ -19,17 +19,17 @@ public class ThesaurusExtractorAcceptanceTest {
     @Test
     void extractsKnownTermsFromSampleDocument() {
         FileLoader fileLoader = new FileLoader();
-        ThesaurusCsvLoader csvLoader = new ThesaurusCsvLoader();
 
+        ThesaurusCsvLoader csvLoader = new ThesaurusCsvLoader();
         List<String> csvLines = fileLoader.loadLines(Path.of("src/test/resources/gtaa-terms.csv"));
         List<ThesaurusTerm> terms = csvLoader.loadFromCsv(csvLines);
+        KeyNormaliser keyNormaliser = new KeyNormaliser();
+        Thesaurus thesaurus = new Thesaurus(terms, keyNormaliser);
 
         List<String> stopWords = fileLoader.loadLines(Path.of("src/test/resources/stopwords.txt"));
         StopWordFilter stopWordFilter = new StopWordFilter(stopWords);
-
-        KeyNormaliser keyNormaliser = new KeyNormaliser();
-        Thesaurus thesaurus = new Thesaurus(terms, keyNormaliser);
         TextWindowExtractor textWindowExtractor = new TextWindowExtractor(stopWordFilter);
+
         ThesaurusTermExtractor extractor = new ThesaurusTermExtractor(thesaurus, textWindowExtractor);
 
         String document = fileLoader.loadText(Path.of("src/test/resources/sampledoc.txt"));
