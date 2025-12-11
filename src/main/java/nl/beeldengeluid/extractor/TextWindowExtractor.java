@@ -18,7 +18,7 @@ public class TextWindowExtractor {
     }
 
     private List<String> tokenise(String document) {
-        return List.of(document.split(" "));
+        return List.of(document.split("[^\\p{L}\\p{M}\\p{Nd}]+"));
     }
 
     private List<String> generateAllWindows(List<String> tokenisedWords, int maxWindowSize) {

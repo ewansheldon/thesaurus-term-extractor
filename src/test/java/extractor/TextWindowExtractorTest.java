@@ -4,12 +4,13 @@ import nl.beeldengeluid.extractor.StopWordFilter;
 import nl.beeldengeluid.extractor.TextWindowExtractor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.*;
 
 public class TextWindowExtractorTest {
     private TextWindowExtractor extractor;
@@ -43,5 +44,13 @@ public class TextWindowExtractorTest {
         int maxWindowSize = 2;
         when(stopWordFilter.filter(allPossibleWindows)).thenReturn(filteredWindows);
         assertEquals(filteredWindows, extractor.extractWordWindows(input, maxWindowSize));
+    }
+
+    @Test
+    void splitsWordsByPunctuationAndSpaces() {
+        String inputWithReference = "Hilversum.[1]";
+        String target = "Hilversum";
+        extractor.extractWordWindows(inputWithReference, 3);
+        verify(stopWordFilter).filter(Mockito.argThat(a -> a.contains(target)));
     }
 }
