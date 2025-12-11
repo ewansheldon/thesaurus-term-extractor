@@ -11,7 +11,7 @@ public class StopWordFilter {
 
     public List<String> filter(List<String> unfilteredWords) {
         return unfilteredWords.stream()
-                .filter(word -> !stopWords.contains(word))
+                .filter(word -> !stopWords.contains(word.toLowerCase()))
                 .toList();
     }
 }
