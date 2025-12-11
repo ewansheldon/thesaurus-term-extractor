@@ -1,6 +1,6 @@
 package util;
 
-import nl.beeldengeluid.util.FileLoader;
+import nl.beeldengeluid.app.FileLoader;
 import nl.beeldengeluid.util.FileLoadingException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
