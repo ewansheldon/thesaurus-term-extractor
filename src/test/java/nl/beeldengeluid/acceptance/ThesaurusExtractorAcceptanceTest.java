@@ -35,8 +35,7 @@ public class ThesaurusExtractorAcceptanceTest {
         String document = fileLoader.loadText(Path.of("src/test/resources/sampledoc.txt"));
         List<ThesaurusTerm> results = extractor.extract(document);
 
-//        assertTrue(results.contains(new ExtractionResult("Van Kooten", "persoonsnamen")));
-//        assertTrue(results.contains(new ExtractionResult("De Bie", "persoonsnamen")));
+        assertTrue(results.contains(new ThesaurusTerm("Simplisties Verbond", "namen")));
         assertTrue(results.contains(new ThesaurusTerm("Hilversum", "geografischenamen")));
     }
 }
