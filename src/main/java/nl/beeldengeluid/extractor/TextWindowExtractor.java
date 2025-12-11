@@ -4,9 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TextWindowExtractor {
+
+    private final StopWordFilter stopWordFilter;
+
+    public TextWindowExtractor(StopWordFilter stopWordFilter) {
+        this.stopWordFilter = stopWordFilter;
+    }
+
     public List<String> extractWordWindows(String document, int maxWindowSize) {
         List<String> tokenisedWords = tokenise(document);
-        return generateAllWindows(tokenisedWords, maxWindowSize);
+        List<String> allWordWindows = generateAllWindows(tokenisedWords, maxWindowSize);
+        return stopWordFilter.filter(allWordWindows);
     }
 
     private List<String> tokenise(String document) {

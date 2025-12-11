@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class TextWindowExtractorTest {
@@ -16,7 +17,8 @@ public class TextWindowExtractorTest {
 
     @BeforeEach
     void setUp() {
-        extractor = new TextWindowExtractor();
+        stopWordFilter = mock(StopWordFilter.class);
+        extractor = new TextWindowExtractor(stopWordFilter);
     }
 
     @Test
@@ -28,14 +30,18 @@ public class TextWindowExtractorTest {
                 "Lorem ipsum", "ipsum dolor", "dolor sit", "sit amet", // 2 word windows
                 "Lorem ipsum dolor", "ipsum dolor sit", "dolor sit amet" // 3 word windows
         );
+        when(stopWordFilter.filter(expectedWindows)).thenReturn(expectedWindows);
+
         assertEquals(expectedWindows, extractor.extractWordWindows(input, maxWindowSize));
     }
 
-//    @Test
-//    void filtersOutWindowsWithStopWordFilter() {
-//        String input = "Lorem ipsum";
-//        int maxWindowSize = 2;
-//        when(stopWordFilter)
-//        assertEquals(expectedWindows, extractor.extractWordWindows(input, maxWindowSize));
-//    }
+    @Test
+    void filtersOutWindowsWithStopWordFilter() {
+        String input = "Lorem ipsum";
+        List<String> allPossibleWindows = List.of("Lorem", "ipsum", "Lorem ipsum");
+        List<String> filteredWindows = List.of("Lorem", "Lorem ipsum");
+        int maxWindowSize = 2;
+        when(stopWordFilter.filter(allPossibleWindows)).thenReturn(filteredWindows);
+        assertEquals(filteredWindows, extractor.extractWordWindows(input, maxWindowSize));
+    }
 }

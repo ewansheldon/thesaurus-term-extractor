@@ -1,5 +1,6 @@
 package nl.beeldengeluid.acceptance;
 
+import nl.beeldengeluid.extractor.StopWordFilter;
 import nl.beeldengeluid.extractor.TextWindowExtractor;
 import nl.beeldengeluid.extractor.ThesaurusTermExtractor;
 import nl.beeldengeluid.model.ThesaurusTerm;
@@ -23,9 +24,12 @@ public class ThesaurusExtractorAcceptanceTest {
         List<String> csvLines = fileLoader.loadLines(Path.of("src/test/resources/gtaa-terms.csv"));
         List<ThesaurusTerm> terms = csvLoader.loadFromCsv(csvLines);
 
+        List<String> stopWords = fileLoader.loadLines(Path.of("src/test/resources/stopwords.txt"));
+        StopWordFilter stopWordFilter = new StopWordFilter(stopWords);
+
         KeyNormaliser keyNormaliser = new KeyNormaliser();
         Thesaurus thesaurus = new Thesaurus(terms, keyNormaliser);
-        TextWindowExtractor textWindowExtractor = new TextWindowExtractor();
+        TextWindowExtractor textWindowExtractor = new TextWindowExtractor(stopWordFilter);
         ThesaurusTermExtractor extractor = new ThesaurusTermExtractor(thesaurus, textWindowExtractor);
 
         String document = fileLoader.loadText(Path.of("src/test/resources/sampledoc.txt"));

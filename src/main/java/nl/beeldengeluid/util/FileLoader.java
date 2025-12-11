@@ -7,19 +7,19 @@ import java.nio.file.Path;
 import java.util.List;
 
 public class FileLoader {
-    public List<String> loadLines(Path csvFilePath) {
+    public List<String> loadLines(Path filePath) {
         try {
-            return Files.readAllLines(csvFilePath, StandardCharsets.UTF_8);
+            return Files.readAllLines(filePath, StandardCharsets.UTF_8);
         } catch (IOException e) {
-            throw new FileLoadingException("Could not read file: " + csvFilePath, e);
+            throw new FileLoadingException("Could not read file: " + filePath, e);
         }
     }
 
-    public String loadText(Path txtFilePath) {
+    public String loadText(Path filePath) {
         try {
-            return Files.readString(txtFilePath, StandardCharsets.UTF_8);
+            return Files.readString(filePath, StandardCharsets.UTF_8);
         } catch (IOException e) {
-            throw new FileLoadingException("Could not read file: " + txtFilePath, e);
+            throw new FileLoadingException("Could not read file: " + filePath, e);
         }
     }
 }
