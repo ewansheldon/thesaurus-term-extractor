@@ -10,7 +10,7 @@ public class KeyNormaliser {
     }
 
     private String normaliseWhitespace(String key) {
-        return key.replaceAll("\\s+", " ").trim();
+        return key.replaceAll("\\s+", " ").strip();
     }
 
     private String removeAllPunctuation(String key) {
@@ -32,7 +32,7 @@ public class KeyNormaliser {
     private String reorderAroundComma(String key) {
         if (key.contains(",")) {
             String[] parts = key.split(",", 2);
-            return parts[1].trim() + " " + parts[0].trim();
+            return parts[1].strip() + " " + parts[0].strip();
         }
         return key;
     }

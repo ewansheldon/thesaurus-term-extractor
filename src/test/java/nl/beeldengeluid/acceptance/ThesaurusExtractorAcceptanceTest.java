@@ -3,7 +3,9 @@ package nl.beeldengeluid.acceptance;
 import nl.beeldengeluid.extractor.TextWindowExtractor;
 import nl.beeldengeluid.extractor.ThesaurusTermExtractor;
 import nl.beeldengeluid.model.ThesaurusTerm;
-import nl.beeldengeluid.thesaurus.*;
+import nl.beeldengeluid.thesaurus.KeyNormaliser;
+import nl.beeldengeluid.thesaurus.Thesaurus;
+import nl.beeldengeluid.thesaurus.ThesaurusCsvLoader;
 import nl.beeldengeluid.util.FileLoader;
 import org.junit.jupiter.api.Test;
 

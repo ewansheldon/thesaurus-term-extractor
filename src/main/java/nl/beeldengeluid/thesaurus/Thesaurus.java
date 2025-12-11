@@ -22,7 +22,9 @@ public class Thesaurus {
         terms.forEach(term -> {
             keywordTermMap.put(keyNormaliser.normaliseByType(term), term);
             int termWordCount = term.term().split(" ").length;
-            if (termWordCount > maxTermWordCount) maxTermWordCount = termWordCount;
+            if (termWordCount > maxTermWordCount) {
+                maxTermWordCount = termWordCount;
+            }
         });
     }
 
