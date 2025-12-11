@@ -7,6 +7,7 @@ import nl.beeldengeluid.model.ThesaurusTerm;
 import nl.beeldengeluid.thesaurus.KeyNormaliser;
 import nl.beeldengeluid.thesaurus.Thesaurus;
 import nl.beeldengeluid.thesaurus.ThesaurusCsvLoader;
+import nl.beeldengeluid.util.FileLoader;
 
 import java.nio.file.Path;
 import java.util.List;

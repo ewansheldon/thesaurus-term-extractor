@@ -1,6 +1,4 @@
-package nl.beeldengeluid.app;
-
-import nl.beeldengeluid.util.FileLoadingException;
+package nl.beeldengeluid.util;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
