@@ -91,7 +91,7 @@ Parses CSV rows into ThesaurusTerm objects.
 
 ### FileLoader
 
-Loads data as plain text or line by line.
+Reads file data as plain text or line by line.
 
 ## API Server
 
