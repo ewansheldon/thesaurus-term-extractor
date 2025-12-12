@@ -14,10 +14,10 @@ public class APIServer {
 
     app.post("/extract", ctx -> {
         ExtractRequest req = ctx.bodyAsClass(ExtractRequest.class);
-        List<ThesaurusTerm> result = extractor.extract(req.text());
+        List<ThesaurusTerm> result = extractor.extract(req.document());
         ctx.json(result);
     });
 }
 
-    record ExtractRequest(String text) {}
+    record ExtractRequest(String document) {}
 }

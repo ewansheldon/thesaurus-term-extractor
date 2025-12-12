@@ -2,7 +2,7 @@ package thesaurus;
 
 import nl.beeldengeluid.model.ThesaurusTerm;
 import nl.beeldengeluid.thesaurus.TermLoadingException;
-import nl.beeldengeluid.thesaurus.ThesaurusCsvLoader;
+import nl.beeldengeluid.thesaurus.ThesaurusTermParser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,12 +11,12 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class ThesaurusCsvLoaderTest {
-    private ThesaurusCsvLoader loader;
+public class ThesaurusTermParserTest {
+    private ThesaurusTermParser parser;
 
     @BeforeEach
     void setUp() {
-        loader = new ThesaurusCsvLoader();
+        parser = new ThesaurusTermParser();
     }
 
     @Test
@@ -35,15 +35,15 @@ public class ThesaurusCsvLoaderTest {
                 new ThesaurusTerm("[update this]", "onderwerpen")
         );
 
-        assertEquals(expectedTerms, loader.loadFromCsv(csvTerms));
+        assertEquals(expectedTerms, parser.parseFromCsv(csvTerms));
     }
 
     @Test
     void throwsExceptionWhenUnexpectedLineFormat() {
         List<String> tooShortLines = List.of("Hilversum");
-        assertThrows(TermLoadingException.class, () -> loader.loadFromCsv(tooShortLines));
+        assertThrows(TermLoadingException.class, () -> parser.parseFromCsv(tooShortLines));
 
         List<String> tooLongLines = List.of("Hilversum; geografischenamen; namen");
-        assertThrows(TermLoadingException.class, () -> loader.loadFromCsv(tooLongLines));
+        assertThrows(TermLoadingException.class, () -> parser.parseFromCsv(tooLongLines));
     }
 }
