@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -37,5 +38,12 @@ public class ThesaurusTermExtractorTest {
 
         List<ThesaurusTerm> terms = thesaurusTermExtractor.extract(document);
         assertEquals(List.of(expectedTerm), terms);
+    }
+
+    @Test
+    void throwsExceptionWhenInvalidInput() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            thesaurusTermExtractor.extract(null);
+        });
     }
 }

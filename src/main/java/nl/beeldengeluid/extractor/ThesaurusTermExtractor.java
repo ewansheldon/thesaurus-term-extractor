@@ -16,6 +16,7 @@ public class ThesaurusTermExtractor {
     }
 
     public List<ThesaurusTerm> extract(String document) {
+        if (document == null) throw new IllegalArgumentException("Document cannot be null");
         int maxTermWordCount = thesaurus.getMaxTermWordCount();
         List<String> textWindows = textWindowExtractor.extractWordWindows(document, maxTermWordCount);
         return textWindows.stream()
