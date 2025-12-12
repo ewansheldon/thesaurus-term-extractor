@@ -12,7 +12,7 @@ import nl.beeldengeluid.util.FileLoader;
 import java.nio.file.Path;
 import java.util.List;
 
-public class Application {
+public class ApplicationContext {
     public static ThesaurusTermExtractor build() {
         FileLoader fileLoader = new FileLoader();
 

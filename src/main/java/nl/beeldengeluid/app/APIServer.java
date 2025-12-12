@@ -8,7 +8,7 @@ import java.util.List;
 
 public class APIServer {
     public static void main(String[] args) {
-    ThesaurusTermExtractor extractor = Application.build();
+    ThesaurusTermExtractor extractor = ApplicationContext.build();
 
     var app = Javalin.create().start(8080);
 

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        ThesaurusTermExtractor thesaurusTermExtractor = Application.build();
+        ThesaurusTermExtractor thesaurusTermExtractor = ApplicationContext.build();
 
         FileLoader fileLoader = new FileLoader();
         String document = fileLoader.loadText(Path.of("src/main/resources/sampledoc.txt"));
