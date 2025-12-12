@@ -19,7 +19,7 @@ src/
         java/nl/beeldengeluid/
             app/
                 Main.java           # prints out of sample document
-                APIServer.java      # Exposes JSON API
+                APIServer.java      # exposes JSON API
             extractor/
             model/
             thesaurus/
