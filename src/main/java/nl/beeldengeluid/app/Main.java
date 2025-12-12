@@ -17,6 +17,7 @@ public class Main {
         results.forEach(result -> {
             System.out.println(prettifyForConsole(result));
         });
+        System.out.println("Total results: " + results.size());
     }
 
     private static String prettifyForConsole(ThesaurusTerm result) {
