@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -46,5 +47,26 @@ public class ThesaurusTest {
         String personalLookupKey = "(Kees van Kooten ";
         when(normaliserMock.normalise(personalLookupKey)).thenReturn(personalNameKey);
         assertEquals(Optional.of(personalNameTerm), thesaurus.lookup(personalLookupKey));
+    }
+
+    @Test
+    void doesNotStoreEmptyKeys() {
+        ThesaurusTerm term = new ThesaurusTerm(".", "namen");
+        String emptyKey = "";
+        when(normaliserMock.normaliseByType(term)).thenReturn(emptyKey);
+        when(normaliserMock.normalise(term.term())).thenReturn(emptyKey);
+        Thesaurus emptyThesaurus = new Thesaurus(List.of(term), normaliserMock);
+
+        assertTrue(emptyThesaurus.lookup(term.term()).isEmpty());
+    }
+
+    @Test
+    void doesNotStoreNullKeys() {
+        ThesaurusTerm term = new ThesaurusTerm("", "namen");
+        when(normaliserMock.normaliseByType(term)).thenReturn(null);
+        when(normaliserMock.normalise(term.term())).thenReturn(null);
+        Thesaurus emptyThesaurus = new Thesaurus(List.of(term), normaliserMock);
+
+        assertTrue(emptyThesaurus.lookup(term.term()).isEmpty());
     }
 }

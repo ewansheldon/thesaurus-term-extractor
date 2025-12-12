@@ -20,10 +20,13 @@ public class Thesaurus {
     private void mapTerms(List<ThesaurusTerm> terms) {
         keywordTermMap = new HashMap<>();
         terms.forEach(term -> {
-            keywordTermMap.put(keyNormaliser.normaliseByType(term), term);
-            int termWordCount = term.term().split(" ").length;
-            if (termWordCount > maxTermWordCount) {
-                maxTermWordCount = termWordCount;
+            String normalisedKey = keyNormaliser.normaliseByType(term);
+            if (normalisedKey != null && !normalisedKey.isEmpty()) {
+                keywordTermMap.put(normalisedKey, term);
+                int termWordCount = term.term().split(" ").length;
+                if (termWordCount > maxTermWordCount) {
+                    maxTermWordCount = termWordCount;
+                }
             }
         });
     }
