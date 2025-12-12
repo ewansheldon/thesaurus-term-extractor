@@ -65,31 +65,31 @@ target/thesaurus-term-extractor-1.0-SNAPSHOT.jar
 
 ## Architecture Overview
 
-### ThesaurusTermExtractor
+#### [ThesaurusTermExtractor](src/main/java/nl/beeldengeluid/extractor/TextWindowExtractor.java)
 
 Central class which orchestrates extraction of known thesaurus terms from given document.
 
-### Thesaurus
+#### [Thesaurus](src/main/java/nl/beeldengeluid/thesaurus/Thesaurus.java)
 
 Stores all terms in a lookup map keyed by normalised text.
 
-### TextWindowExtractor
+#### [TextWindowExtractor](src/main/java/nl/beeldengeluid/extractor/TextWindowExtractor.java)
 
 Splits the document into word windows of varying sizes, with a given max word count.
 
-### StopWordFilter
+#### [StopWordFilter](src/main/java/nl/beeldengeluid/extractor/StopWordFilter.java)
 
 Removes single-word windows that are exact stopwords.
 
-### KeyNormaliser
+#### [KeyNormaliser](src/main/java/nl/beeldengeluid/thesaurus/KeyNormaliser.java)
 
 Normalises terms differently depending on category (personal names or other).
 
-### ThesaurusTermParser
+#### [ThesaurusTermParser](src/main/java/nl/beeldengeluid/thesaurus/ThesaurusTermParser.java)
 
 Parses CSV rows into ThesaurusTerm objects.
 
-### FileLoader
+#### [FileLoader](src/main/java/nl/beeldengeluid/util/FileLoader.java)
 
 Reads file data as plain text or line by line.
 
