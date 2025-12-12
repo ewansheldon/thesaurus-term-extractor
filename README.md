@@ -35,6 +35,8 @@ src/
 - Java 17+
 - Maven 3.8+
 
+---
+
 ## Running the project
 
 ### 1. Run the tests:
@@ -51,6 +53,8 @@ To print all the thesaurus terms extracted from the sample document to CLI:
 mvn exec:java -Dexec.mainClass="nl.beeldengeluid.app.Main"
 ```
 
+---
+
 ## Running a clean build
 
 ```
@@ -62,6 +66,8 @@ This generates:
 ```
 target/thesaurus-term-extractor-1.0-SNAPSHOT.jar
 ```
+
+---
 
 ## Architecture Overview
 
@@ -93,6 +99,8 @@ Parses CSV rows into ThesaurusTerm objects.
 
 Reads file data as plain text or line by line.
 
+---
+
 ## API Server
 
 To run the API server:
@@ -101,11 +109,11 @@ To run the API server:
 mvn exec:java -Dexec.mainClass="nl.beeldengeluid.app.APIServer"
 ```
 
-Once APIServer is running:
+### `POST /extract`
 
-`POST /extract` extracts thesaurus terms from a document.
+Extracts thesaurus terms from a document.
 
-Request body: JSON request with document
+Request: JSON request with document
 
 ```
 {"document":"In de periode vanaf Het Simplisties Verbond (1974/1975)"}
