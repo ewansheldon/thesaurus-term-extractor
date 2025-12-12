@@ -4,8 +4,8 @@ import nl.beeldengeluid.model.ThesaurusTerm;
 
 import java.util.List;
 
-public class ThesaurusCsvLoader {
-    public List<ThesaurusTerm> loadFromCsv(List<String> csvLines) {
+public class ThesaurusTermParser {
+    public List<ThesaurusTerm> parseFromCsv(List<String> csvLines) {
         return csvLines.stream().map(csvTerm -> {
             String[] termParts = csvTerm.split(";");
             if (termParts.length != 2) throw new TermLoadingException("Invalid CSV term format " + csvTerm);

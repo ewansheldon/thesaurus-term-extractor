@@ -1,9 +1,7 @@
-package extractor;
+package nl.beeldengeluid.extractor;
 
-import nl.beeldengeluid.extractor.StopWordFilter;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

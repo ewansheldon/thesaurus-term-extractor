@@ -1,7 +1,5 @@
-package extractor;
+package nl.beeldengeluid.extractor;
 
-import nl.beeldengeluid.extractor.TextWindowExtractor;
-import nl.beeldengeluid.extractor.ThesaurusTermExtractor;
 import nl.beeldengeluid.model.ThesaurusTerm;
 import nl.beeldengeluid.thesaurus.Thesaurus;
 import org.junit.jupiter.api.BeforeEach;

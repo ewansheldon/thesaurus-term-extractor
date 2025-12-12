@@ -1,7 +1,5 @@
-package extractor;
+package nl.beeldengeluid.extractor;
 
-import nl.beeldengeluid.extractor.StopWordFilter;
-import nl.beeldengeluid.extractor.TextWindowExtractor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -9,7 +7,6 @@ import org.mockito.Mockito;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 public class TextWindowExtractorTest {

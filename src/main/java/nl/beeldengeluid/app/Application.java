@@ -6,7 +6,7 @@ import nl.beeldengeluid.extractor.ThesaurusTermExtractor;
 import nl.beeldengeluid.model.ThesaurusTerm;
 import nl.beeldengeluid.thesaurus.KeyNormaliser;
 import nl.beeldengeluid.thesaurus.Thesaurus;
-import nl.beeldengeluid.thesaurus.ThesaurusCsvLoader;
+import nl.beeldengeluid.thesaurus.ThesaurusTermParser;
 import nl.beeldengeluid.util.FileLoader;
 
 import java.nio.file.Path;
@@ -16,9 +16,9 @@ public class Application {
     public static ThesaurusTermExtractor build() {
         FileLoader fileLoader = new FileLoader();
 
-        ThesaurusCsvLoader csvLoader = new ThesaurusCsvLoader();
+        ThesaurusTermParser csvParser = new ThesaurusTermParser();
         List<String> csvLines = fileLoader.loadLines(Path.of("src/main/resources/gtaa-terms.csv"));
-        List<ThesaurusTerm> terms = csvLoader.loadFromCsv(csvLines);
+        List<ThesaurusTerm> terms = csvParser.parseFromCsv(csvLines);
         KeyNormaliser keyNormaliser = new KeyNormaliser();
         Thesaurus thesaurus = new Thesaurus(terms, keyNormaliser);
 

@@ -1,8 +1,6 @@
-package thesaurus;
+package nl.beeldengeluid.thesaurus;
 
 import nl.beeldengeluid.model.ThesaurusTerm;
-import nl.beeldengeluid.thesaurus.TermLoadingException;
-import nl.beeldengeluid.thesaurus.ThesaurusTermParser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
