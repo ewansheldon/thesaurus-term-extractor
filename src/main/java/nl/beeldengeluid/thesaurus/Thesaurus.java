@@ -23,7 +23,7 @@ public class Thesaurus {
             String normalisedKey = keyNormaliser.normaliseByType(term);
             if (normalisedKey != null && !normalisedKey.isEmpty()) {
                 keywordTermMap.put(normalisedKey, term);
-                int termWordCount = term.term().split(" ").length;
+                int termWordCount = normalisedKey.split(" ").length;
                 if (termWordCount > maxTermWordCount) {
                     maxTermWordCount = termWordCount;
                 }
