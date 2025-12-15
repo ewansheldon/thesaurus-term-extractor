@@ -71,7 +71,7 @@ target/thesaurus-term-extractor-1.0-SNAPSHOT.jar
 
 ## Architecture Overview
 
-#### [ThesaurusTermExtractor](src/main/java/nl/beeldengeluid/extractor/TextWindowExtractor.java)
+#### [ThesaurusTermExtractor](src/main/java/nl/beeldengeluid/extractor/ThesaurusTermExtractor.java)
 
 Central class which orchestrates extraction of known thesaurus terms from given document.
 
